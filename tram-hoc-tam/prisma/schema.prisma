@@ -1,0 +1,136 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model School {
+  id        String   @id @default(cuid())
+  name      String
+  code      String   @unique
+  timezone  String   @default("Asia/Ho_Chi_Minh")
+  classes   Class[]
+  createdAt DateTime @default(now())
+}
+
+model Class {
+  id        String    @id @default(cuid())
+  schoolId  String
+  grade     Int
+  name      String
+  school    School    @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  students  Student[]
+  lessons   Lesson[]
+  createdAt DateTime  @default(now())
+
+  @@index([schoolId, grade])
+}
+
+model Student {
+  id             String   @id @default(cuid())
+  classId        String
+  displayName    String
+  textbookStatus String   @default("MISSING")
+  class          Class    @relation(fields: [classId], references: [id], onDelete: Cascade)
+  createdAt      DateTime @default(now())
+
+  @@index([classId, textbookStatus])
+}
+
+model Subject {
+  id      String   @id @default(cuid())
+  name    String
+  grade   Int
+  lessons Lesson[]
+
+  @@unique([name, grade])
+}
+
+model Lesson {
+  id           String     @id @default(cuid())
+  classId      String
+  subjectId    String
+  title        String
+  week         Int
+  learningGoals String?
+  class        Class      @relation(fields: [classId], references: [id], onDelete: Cascade)
+  subject      Subject    @relation(fields: [subjectId], references: [id])
+  resources    Resource[]
+  createdAt    DateTime   @default(now())
+
+  @@index([classId, week])
+}
+
+model Resource {
+  id            String   @id @default(cuid())
+  lessonId      String
+  type          String
+  sourceType    String
+  licenseStatus String
+  url           String?
+  fileKey       String?
+  expiresAt     DateTime?
+  lesson        Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  reviews       Review[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([lessonId, licenseStatus])
+}
+
+model BookCopy {
+  id        String   @id @default(cuid())
+  schoolId  String
+  title     String
+  location  String
+  status    String   @default("AVAILABLE")
+  loans     Loan[]
+  school    School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Loan {
+  id             String    @id @default(cuid())
+  bookCopyId     String
+  studentGroupId String?
+  borrowAt       DateTime
+  dueAt          DateTime
+  returnedAt     DateTime?
+  bookCopy       BookCopy  @relation(fields: [bookCopyId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  resourceId String
+  reviewerId String
+  decision   String
+  notes      String?
+  createdAt  DateTime @default(now())
+  resource   Resource @relation(fields: [resourceId], references: [id], onDelete: Cascade)
+
+  @@index([resourceId, decision])
+}
+
+model TransitionSession {
+  id        String   @id @default(cuid())
+  schoolId  String
+  startsAt  DateTime
+  expiresAt DateTime
+  status    String   @default("ACTIVE")
+  school    School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String
+  action     String
+  entityType String
+  entityId   String
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId, createdAt])
+}

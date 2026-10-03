@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+/* Font hệ thống: không tải font từ Internet, hiển thị đủ dấu tiếng Việt trên Windows, macOS, Android, iOS, Linux. */
+@theme {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+:root {
+  --background: #f6f8fb;
+  --foreground: #0f172a;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: #0f172a; color: #fff; }
+
+.card-grid-bg {
+  background-image: linear-gradient(to right, rgba(15,23,42,.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(15,23,42,.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.hero-glow {
+  background: radial-gradient(circle at 20% 20%, rgba(56,189,248,.24), transparent 35%), radial-gradient(circle at 85% 30%, rgba(34,197,94,.16), transparent 28%), #0f172a;
+}
+
+.field { width: 100%; border: 1px solid rgb(226 232 240); border-radius: 1rem; background: white; padding: .75rem 1rem; font-size: .875rem; outline: none; }
+.field:focus { border-color: rgb(15 23 42); box-shadow: 0 0 0 3px rgb(226 232 240); }
+
+/* In phiếu bài học (phương án giấy) */
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+}
