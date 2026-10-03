@@ -2,9 +2,9 @@
   TRẠM HỌC TẠM - HƯỚNG DẪN CHẠY THỬ WEB TRÊN GITHUB (KHÔNG CẦN CÀI GÌ)
 ==============================================================================
 
-DISCLAIMER:[Vide code production] Đây là sản phẩm từ quá trình nghĩ ra từ idea 
-của bản thân và hoàn thiện bằng chat bot AI hỗ trợ nghiên cứu và phát triển 
-phần mềm trong thời gian ngắn nên độ hoàn thiện có thể không cao. 
+**DISCLAIMER**:[Vide code production] Đây là sản phẩm từ quá trình nghĩ ra từ 
+idea của bản thân và hoàn thiện bằng chat bot AI hỗ trợ nghiên cứu và phát
+triển phần mềm trong thời gian ngắn nên độ hoàn thiện có thể không cao. 
 
 Bạn chỉ cần:
   - Một tài khoản GitHub miễn phí, đã đăng nhập.
