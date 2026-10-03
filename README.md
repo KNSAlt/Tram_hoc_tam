@@ -101,6 +101,7 @@ Không cần biến môi trường hay kết nối Internet khi chạy. File `.e
 ### Chạy trong GitHub Codespaces
 
 ```bash
+if [ -d tram-hoc-tam ]; then cp -a tram-hoc-tam/. . && rm -rf tram-hoc-tam; fi
 npm install
 npm run dev
 ```
