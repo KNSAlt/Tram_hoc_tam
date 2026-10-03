@@ -1,0 +1,126 @@
+==============================================================================
+  TRẠM HỌC TẠM - HƯỚNG DẪN CHẠY THỬ WEB TRÊN GITHUB (KHÔNG CẦN CÀI GÌ)
+==============================================================================
+
+DISCLAIMER:[Vide code production] Đây là sản phẩm từ quá trình nghĩ ra từ idea 
+của bản thân và hoàn thiện bằng chat bot AI hỗ trợ nghiên cứu và phát triển 
+phần mềm trong thời gian ngắn nên độ hoàn thiện có thể không cao. 
+
+Bạn chỉ cần:
+  - Một tài khoản GitHub miễn phí, đã đăng nhập.
+  - Một trình duyệt (Chrome, Edge, Firefox...). Máy tính không cần cài thêm gì.
+
+Web sẽ chạy trong "Codespaces" - một máy tính ảo của GitHub, mở ngay trong
+trình duyệt. Dùng miễn phí trong hạn mức hàng tháng của GitHub.
+
+
+------------------------------------------------------------------------------
+BƯỚC 1. MỞ MÁY ẢO (CODESPACE)
+------------------------------------------------------------------------------
+  1. Ở trang chính của kho mã (repository) này trên GitHub, bấm nút xanh
+     "<> Code".
+  2. Chọn tab "Codespaces".
+  3. Bấm "Create codespace on main".
+  4. Đợi khoảng 1-2 phút. Một cửa sổ giống phần mềm VS Code sẽ hiện ra
+     ngay trong trình duyệt.
+
+
+------------------------------------------------------------------------------
+BƯỚC 2. MỞ TERMINAL (KHUNG GÕ LỆNH)
+------------------------------------------------------------------------------
+  Thường Terminal đã tự mở ở nửa dưới màn hình. Nếu chưa thấy:
+    - Bấm biểu tượng 3 gạch (góc trên bên trái) > Terminal > New Terminal.
+    - Hoặc bấm phím tắt: Ctrl + `  (dấu huyền, phím nằm dưới phím Esc).
+
+
+------------------------------------------------------------------------------
+BƯỚC 3. CHÉP VÀ DÁN 3 DÒNG LỆNH SAU VÀO TERMINAL, RỒI NHẤN ENTER
+------------------------------------------------------------------------------
+  if [ -d tram-hoc-tam ]; then cp -a tram-hoc-tam/. . && rm -rf tram-hoc-tam; fi
+  npm install
+  npm run dev
+
+  Giải thích:
+    Dòng 1: nếu dự án đang nằm trong thư mục con "tram-hoc-tam" thì đưa toàn
+            bộ ra ngoài thư mục gốc rồi xóa thư mục con. (Tương đương hai lệnh
+            "cp -a tram-hoc-tam/. ." và "rm -rf tram-hoc-tam".)
+            Nếu không có thư mục con thì dòng này tự bỏ qua, không báo lỗi.
+    Dòng 2: tải các thư viện cần thiết (lần đầu mất khoảng 1-2 phút).
+    Dòng 3: khởi động web.
+
+  Đợi đến khi Terminal hiện dòng có chữ  Ready  (ví dụ: "✓ Ready in 2s").
+  Lần chạy đầu có thể chờ thêm 30-60 giây. ĐỪNG đóng Terminal khi web đang chạy.
+
+
+------------------------------------------------------------------------------
+BƯỚC 4. MỞ WEB
+------------------------------------------------------------------------------
+  Cách 1: Góc dưới bên phải màn hình thường hiện thông báo
+          "Your application running on port 3000 is available."
+          Bấm "Open in Browser".
+
+  Cách 2: Nếu không thấy thông báo, bấm tab "PORTS" (nằm cạnh tab TERMINAL),
+          tìm dòng cổng 3000 và bấm biểu tượng quả địa cầu ở cột "Forwarded
+          Address". Web sẽ mở ở một tab mới.
+
+  Lưu ý: hãy mở web bằng đúng cách trên, đừng tự gõ địa chỉ.
+
+
+------------------------------------------------------------------------------
+BƯỚC 5. DÙNG THỬ (DỮ LIỆU LỚP, HỌC SINH, SÁCH LÀ DỮ LIỆU MẪU GIẢ LẬP)
+------------------------------------------------------------------------------
+  - Tổng quan  : xem tình hình Trạm Học Tạm của lớp.
+  - Giải pháp  : đọc ý tưởng và đối chiếu với yêu cầu đề bài.
+  - Học sinh   : chọn bài, tick checklist, làm quiz, "In phiếu bài học".
+  - Tủ sách    : "Đăng ký mượn" / "Trả sách".
+  - Giáo viên  : tạo và publish bài học, xuất CSV, đóng Trạm.
+  - Bản quyền  : gửi tài liệu, duyệt hoặc chặn publish.
+  - Muốn quay về trạng thái ban đầu: bấm "Đặt lại dữ liệu demo" ở thanh bên.
+
+
+------------------------------------------------------------------------------
+DỪNG VÀ CHẠY LẠI
+------------------------------------------------------------------------------
+  - Dừng web      : bấm vào Terminal rồi nhấn Ctrl + C.
+  - Chạy lại      : chỉ cần gõ  npm run dev
+    (không cần làm lại các lệnh trước đó, trừ khi Codespace bị xóa).
+  - Nếu Codespace đã "ngủ" do lâu không dùng: vào lại
+    https://github.com/codespaces, mở Codespace cũ, rồi gõ  npm run dev
+
+
+------------------------------------------------------------------------------
+GẶP LỖI? THỬ THEO BẢNG NÀY
+------------------------------------------------------------------------------
+  Lỗi "HTTP ERROR 504" hoặc "took too long to respond"
+    -> Web chưa chạy. Xem Terminal đã có chữ "Ready" chưa; nếu chưa chạy thì
+       gõ  npm run dev  và đợi.
+
+  Lỗi "ENOENT ... package.json"  (npm không tìm thấy package.json)
+    -> Bạn đang đứng sai thư mục. Gõ  ls  để xem:
+         * Thấy thư mục "tram-hoc-tam": chạy lại 3 dòng lệnh ở BƯỚC 3.
+         * Thấy "package.json": bạn đã ở đúng chỗ, chạy  npm install  rồi
+           npm run dev.
+
+  Trang hiện ra nhưng bấm nút không có phản ứng
+    -> Tải lại trang (F5). Nhớ mở web bằng cổng 3000 trong tab PORTS.
+
+  Báo lỗi đỏ khác khi chạy  npm install  hoặc  npm run dev
+    -> Chụp màn hình Terminal và gửi cho người phụ trách dự án.
+
+
+------------------------------------------------------------------------------
+CHẠY TRÊN MÁY TÍNH CÁ NHÂN (KHÔNG BẮT BUỘC)
+------------------------------------------------------------------------------
+  Cần cài Node.js phiên bản 20.9 trở lên (https://nodejs.org) và Git.
+  Sau đó mở Terminal (hoặc Command Prompt) và gõ:
+
+    git clone <đường-dẫn-của-kho-mã-này>
+    cd <tên-thư-mục-vừa-tải-về>
+    (nếu bên trong có thư mục "tram-hoc-tam" thì gõ thêm: cd tram-hoc-tam)
+    npm install
+    npm run dev
+
+  Rồi mở trình duyệt, vào  http://localhost:3000
+
+
+==============================================================================
