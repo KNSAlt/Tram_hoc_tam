@@ -40,6 +40,9 @@ BƯỚC 3. CHÉP VÀ DÁN 3 DÒNG LỆNH SAU VÀO TERMINAL, RỒI NHẤN ENTER
   npm install
   npm run dev
 
+  LƯU Ý: Chạy lần lượt từng dòng, không copy chạy liền 3 dòng 1 lúc. Sau khi 
+  một dòng trả lại kết quả mới chạy tiếp dòng dưới
+
   Giải thích:
     Dòng 1: nếu dự án đang nằm trong thư mục con "tram-hoc-tam" thì đưa toàn
             bộ ra ngoài thư mục gốc rồi xóa thư mục con. (Tương đương hai lệnh
